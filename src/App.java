@@ -40,16 +40,16 @@ public class App {
             System.out.println(result); //на арабской мове
         }else if(number1<0 || number2<0){ // проверка на римскоарабскую 
             //System.out.println("Используются одновременно разные системы счисления");
-            throw new CalcException("Используются одновременно разные системы счисления");
+            throw new CalcException("Ввод не удовлетворяет требованиям");
         }else{ // если арабские
                 symbol = inputConsoleMassStrMass[1].charAt(0);
                 result=calca(number1, number2, symbol);
-                if(result>=0){
+                if(result>0){
                     String  resultRoman = convertNumToRoman(result);
                     System.out.println(resultRoman); //на римской мове
-                }else if(result<0){
+                }else if(result<=0){
                     //System.out.println("В римской системе нет отрицательных чисел");
-                    throw new CalcException("В римской системе нет отрицательных чисел");
+                    throw new CalcException("В римской системе нет отрицательных чисел и нуля");
                 }
                 
             }
@@ -60,7 +60,7 @@ public class App {
 
     public static int calca(int n1, int n2, char sym) throws CalcException { // калькуляция
         int res = 0;
-        if (n1 <= 10 && n2 <= 10) {
+        if (n1 <= 10 && n2 <= 10 && n1 != 0 && n2 != 0) {
             switch (sym) {
                 case '*':
                     res = n1 * n2;
